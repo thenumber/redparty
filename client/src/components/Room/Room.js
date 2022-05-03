@@ -10,6 +10,7 @@ import { createConnection, bindSocketEvents } from "../../utils/socket";
 import { getVideoId } from "../../utils/helper";
 import { UserContext } from "../../contexts/UserContext";
 import { SignalContext } from "../../contexts/SignalContext";
+import { useParams } from "react-router-dom";
 
 function Room(props) {
   const [isHost, setHost] = useState(false);
@@ -31,16 +32,7 @@ function Room(props) {
       // Not a host
       _isHost = false;
 
-      // TODO: Show loading screen till connection is created
-      if (!username) {
-        // ask for username
-        const usernamePrompt = await Swal.fire({
-          title: "Enter your display name",
-          input: "text",
-          allowOutsideClick: false,
-        });
-        username = usernamePrompt.value;
-      }
+      const username = "none";
 
       const roomId = props.match.params.id;
       _socket = await createConnection(username, roomId);
@@ -95,6 +87,18 @@ function Room(props) {
   const alertNotImplemented = () => {
     alert("Not implemented");
   };
+
+  const startup_params = useParams();
+
+  useEffect(
+    () => {
+      if (startup_params["youtube_id"] && socket) {
+        const videoId = startup_params["youtube_id"];
+        socket.emit("changeVideo", { videoId });
+      }
+    }, // eslint-disable-next-line
+    [socket, startup_params]
+  );
 
   return (
     <React.Fragment>
