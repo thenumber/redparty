@@ -5,7 +5,7 @@ const ioUtils = require("./utils/io");
 
 const io = require("socket.io")(server, {
   path: "/socket",
-  origins: ["https://interconnector-youtube.netlify.app"],
+  origins: ["https://interconnector-youtube.netlify.app", "https://localhost"],
   serveClient: false,
 });
 
