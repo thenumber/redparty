@@ -8,7 +8,7 @@ const io = require("socket.io")(server, {
   origins: [
     "https://interconnector-youtube.netlify.app",
     "https://localhost",
-    "https://localhost:3000/",
+    "https://localhost:3000",
   ],
   serveClient: false,
 });
