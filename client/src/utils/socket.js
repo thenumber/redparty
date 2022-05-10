@@ -39,13 +39,13 @@ export const bindSocketEvents = (socket, dispatchFunc) => {
 
     switch (data.type) {
       case "userJoin":
-        showToast("success", `${data.payload.name} has joined the room`);
-        dispatchAdminMessage(data.id, `${name} has joined`);
+        // showToast("success", `${data.payload.name} has joined the room`);
+        //dispatchAdminMessage(data.id, `${name} has joined`);
         break;
 
       case "userLeft":
-        showToast("info", `${data.payload.name} has left the room`);
-        dispatchAdminMessage(data.id, `${name} has left`);
+        // showToast("info", `${data.payload.name} has left the room`);
+        // dispatchAdminMessage(data.id, `${name} has left`);
         break;
 
       case "userMessage":
@@ -70,11 +70,11 @@ export const bindSocketEvents = (socket, dispatchFunc) => {
           type: "UPDATE_VIDEO_ID",
           videoId: data.payload.videoId,
         });
-        showToast(
+        /*  showToast(
           "info",
           `${data.payload.user.name} has changed the video`,
           "bottom-start"
-        );
+        );*/
         dispatchAdminMessage(
           data.id,
           `The video has been changed by ${data.payload.user.name}`
@@ -93,11 +93,11 @@ export const bindSocketEvents = (socket, dispatchFunc) => {
               type: "PLAY_VIDEO",
               currentTime: data.payload.currentTime,
             });
-            showToast(
+            /* showToast(
               "info",
               `${data.payload.user.name} has started playing the video`,
               "bottom-start"
-            );
+            ); */
             break;
 
           case "PAUSE":
@@ -105,11 +105,11 @@ export const bindSocketEvents = (socket, dispatchFunc) => {
               type: "PAUSE_VIDEO",
               timestamp: Date.now(),
             });
-            showToast(
+            /* showToast(
               "info",
               `${data.payload.user.name} has paused the video`,
               "bottom-start"
-            );
+            ); */
             break;
 
           default:
